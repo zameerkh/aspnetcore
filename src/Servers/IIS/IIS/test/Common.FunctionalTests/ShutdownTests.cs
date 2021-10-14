@@ -426,7 +426,7 @@ namespace Microsoft.AspNetCore.Server.IIS.FunctionalTests
             deploymentResult.ModifyWebConfig(element => { });
 
             // Have to retry here to allow ANCM to receive notification and react to it
-            // Verify that worker process does not restarted with new process id
+            // Verify that worker process does not get restarted with new process id
             await deploymentResult.HttpClient.RetryRequestAsync("/ProcessId", async r => await r.Content.ReadAsStringAsync() == processBefore);
         }
 
@@ -445,7 +445,7 @@ namespace Microsoft.AspNetCore.Server.IIS.FunctionalTests
             deploymentResult.ModifyWebConfig(element => { });
 
             // Have to retry here to allow ANCM to receive notification and react to it
-            // Verify that worker process does not restarted with new process id
+            // Verify that worker process does not get restarted with new process id
             await deploymentResult.HttpClient.RetryRequestAsync("/ProcessId", async r => await r.Content.ReadAsStringAsync() == processBefore);
         }
 
