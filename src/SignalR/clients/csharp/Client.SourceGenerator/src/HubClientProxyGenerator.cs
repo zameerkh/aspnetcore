@@ -19,6 +19,12 @@ namespace Microsoft.AspNetCore.SignalR.Client.SourceGenerator
                 c.AddSource("HubClientProxyAttribute.g.cs", SourceText.From(GeneratorHelpers.SourceFilePrefix() + @"
 namespace Microsoft.AspNetCore.SignalR.Client
 {
+    /// <summary>
+    /// Place this attribute on a method with the following syntax:
+    /// <code>
+    ///   public static partial IDisposable RegisterCallbacks&lt;T&gt;(this HubConnection connection, T proxy);
+    /// </code>
+    /// </summary>
     [System.AttributeUsage(System.AttributeTargets.Method)]
     public class HubClientProxyAttribute : System.Attribute
     {

@@ -54,7 +54,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.SourceGenerator
                     registerProviderBody.AppendLine($@"
 {indentation}if(typeof({_spec.SetterTypeParameterName}) == typeof({fqtn}))
 {indentation}{{
-{indentation}    return (System.IDisposable) new CallbackProviderRegistration({methodName}({_spec.SetterHubConnectionParameterName}, ({fqtn}) provider));
+{indentation}    return (System.IDisposable) new CallbackProviderRegistration({methodName}({_spec.SetterHubConnectionParameterName}, ({fqtn}) {_spec.SetterProviderParameterName}));
 {indentation}}}");
                 }
 
