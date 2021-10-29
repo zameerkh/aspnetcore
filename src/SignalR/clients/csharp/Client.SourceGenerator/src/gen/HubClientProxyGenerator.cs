@@ -2,10 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System.Collections.Immutable;
-using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.AspNetCore.SignalR.Client.SourceGenerator
 {
@@ -14,24 +12,6 @@ namespace Microsoft.AspNetCore.SignalR.Client.SourceGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            context.RegisterPostInitializationOutput(c =>
-            {
-                c.AddSource("HubClientProxyAttribute.g.cs", SourceText.From(GeneratorHelpers.SourceFilePrefix() + @"
-namespace Microsoft.AspNetCore.SignalR.Client
-{
-    /// <summary>
-    /// Place this attribute on a method with the following syntax:
-    /// <code>
-    ///   public static partial IDisposable RegisterCallbacks&lt;T&gt;(this HubConnection connection, T proxy);
-    /// </code>
-    /// </summary>
-    [System.AttributeUsage(System.AttributeTargets.Method)]
-    public class HubClientProxyAttribute : System.Attribute
-    {
-    }
-}", Encoding.UTF8));
-            });
-
             var methodDeclaration = context.SyntaxProvider
                 .CreateSyntaxProvider(static (s, _) => Parser.IsSyntaxTargetForAttribute(s),
                     static (ctx, _) => Parser.GetSemanticTargetForAttribute(ctx))
