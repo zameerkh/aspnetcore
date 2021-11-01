@@ -34,6 +34,8 @@ namespace Microsoft.AspNetCore.Server.IntegrationTesting.IIS
 
         private Process _hostProcess;
 
+        protected override string ApplicationHostConfigPath => DeploymentParameters.ServerConfigLocation;
+
         public IISExpressDeployer(DeploymentParameters deploymentParameters, ILoggerFactory loggerFactory)
             : base(new IISDeploymentParameters(deploymentParameters), loggerFactory)
         {
